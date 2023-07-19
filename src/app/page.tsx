@@ -28,15 +28,22 @@ export default function Home() {
 
   const handleSearch = async () => {
     try {
-      const formattedDataInicio = formatDateTime(dataInicio);
-      const formattedDataFim = formatDateTime(dataFim);
+      const params : { [key: string]: any } = {};
 
+      if (dataInicio) {
+        params.dataInicio = formatDateTime(dataInicio);
+      }
+
+      if (dataFim) {
+        params.dataFim = formatDateTime(dataFim);
+      }
+
+      if (nomeOperador) {
+        params.nomeOperador = nomeOperador;
+      }
+  
       const response = await axios.get('http://localhost:8080/transferencias', {
-        params: {
-          dataInicio: formattedDataInicio,
-          dataFim: formattedDataFim,
-          nomeOperador,
-        },
+        params: params
       });
       const data = response.data.transferencias;
       const total = response.data.saldoTotal;
@@ -44,9 +51,9 @@ export default function Home() {
       setTransferencias(data);
       setSaldoTotal(total);
       setSaldoTotalNoPeriodo(totalNoPeriodo);
-
-      console.log(response.data)
-
+  
+      console.log(response.request);
+      console.log(response.data);
     } catch (error) {
       console.error('Erro ao buscar as transferências:', error);
     }
