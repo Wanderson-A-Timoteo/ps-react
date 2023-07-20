@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
-import { Main, Container, Superior, Centro, DataInicio, DataFim, Label, Input, NomeOperador, ButtomPesquisar, TableContainer, Caption, TableHeader, TableData, TableFooter, StyledReactPaginate } from './style';
+import { Main, Container, Header, Superior, Centro, DataInicio, DataFim, Label, Input, NomeOperador, ButtomPesquisar, TableContainer, Caption, TableHeader, TableData, TableFooter, StyledReactPaginate } from './style';
 
 export default function Home() {
   const [transferencias, setTransferencias] = useState([]);
@@ -69,6 +69,7 @@ export default function Home() {
   return (
     <Main>
       <Container>
+        <Header><h1>Movimentações Bancárias</h1></Header>
         <Superior>
           <DataInicio>
             <Label>Data de Início:</Label>
@@ -89,8 +90,12 @@ export default function Home() {
 
         <TableContainer>
           <Caption>
-            <div>Saldo Total: <span>{saldoTotal}</span></div>
-            <div>Saldo no Período: <span>{saldoTotalNoPeriodo}</span></div>
+            <div>
+              Saldo Total: <span>{saldoTotal}</span>
+            </div>
+            <div>
+              Saldo no Período: <span>{saldoTotalNoPeriodo}</span>
+            </div>
           </Caption>
           <TableHeader>
             <div>Dados</div>
@@ -108,8 +113,8 @@ export default function Home() {
           ))}
           <TableFooter>
             <StyledReactPaginate
-              previousLabel={'Anterior'}
-              nextLabel={'Próxima'}
+              previousLabel={'<<'}
+              nextLabel={'>>'}
               breakLabel={'...'}
               breakClassName={'break-me'}
               pageCount={pageCount}
