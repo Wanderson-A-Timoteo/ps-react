@@ -50,10 +50,10 @@ export const Input = styled.input`
   padding: 5px;
   font-size: 16px;
   outline: none;
-  background-color: #f2f4f5; //zinc-100
-  border: 1px solid #e6e9ec; // zinc-200
+  background-color: #f2f4f5;
+  border: 1px solid #e6e9ec;
   border-radius: 3px;
-  box-shadow: 3px 4px 4px #cdd3d9; //zinc-400
+  box-shadow: 3px 4px 4px #cdd3d9;
   font-size: 14px;
   color: #4a5568;
 `;
@@ -81,16 +81,16 @@ export const ButtomPesquisar = styled.button`
   width: 200px;
   padding: 10px;
   cursor: pointer;
-  color:  #4a5568; //gray-700
+  color:  #4a5568;
   margin-right: 20px;
-  background-color: #e6e9ec; //zinc-200
-  border: 1px solid #d9dde2; // zinc-300
+  background-color: #e6e9ec;
+  border: 1px solid #d9dde2; 
   border-radius: 3px;
-  box-shadow: 3px 4px 4px #cdd3d9; //zinc-400
+  box-shadow: 3px 4px 4px #cdd3d9; 
 
   &:hover {
-    background-color: #cdd3d9; //zinc-400
-    border: 1px solid #c0c6cd; //zinc-500
+    background-color: #cdd3d9; 
+    border: 1px solid #c0c6cd; 
     font-weight: 900;
   }
 `;
@@ -100,15 +100,15 @@ export const TableContainer = styled.div`
   grid-template-rows: auto 1fr auto;
   margin: 0px 20px;
   border-radius: 5px;
-  border: 1px solid #d9dde2; // zinc-300
-  box-shadow: 3px 4px 4px #cdd3d9; //zinc-400
+  border: 1px solid #d9dde2; 
+  box-shadow: 3px 4px 4px #cdd3d9; 
 `;
 
 export const Caption = styled.div`
   display: flex;
   justify-content: space-evenly;
   text-align: center;
-  background-color: #d9dde2; //zinc-300
+  background-color: #d9dde2; 
   padding: 10px;
 
   & div {
@@ -123,7 +123,7 @@ export const TableHeader = styled.div`
   grid-template-columns: repeat(4, 1fr);
   padding: 10px;
   color: #4a5568;
-  background-color: #e6e9ec; // zinc-200
+  background-color: #e6e9ec; 
 
   & div {
     font-weight: 600;
@@ -135,10 +135,10 @@ export const TableData = styled.div`
   grid-template-columns: repeat(4, 1fr);
   padding: 10px;
   color: #4a5568;
-  background-color: #f2f4f5; //zinc-100
+  background-color: #f2f4f5; 
 
   &:nth-child(even) {
-    background-color: #f9fafb; //zinc-50
+    background-color: #f9fafb; 
   }
 `;
 
@@ -147,7 +147,7 @@ export const TableFooter = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color:  #f2f4f5; //zinc-100
+  background-color:  #f2f4f5; 
 `;
 
 export const StyledReactPaginate = styled(ReactPaginate)`
@@ -159,13 +159,11 @@ export const StyledReactPaginate = styled(ReactPaginate)`
   border-radius: 3px;
   list-style: none;
   border-radius: 5px;
-  border: 1px solid #e6e9ec; // zinc-200
-  box-shadow: 4px 4px 4px #cdd3d9; //zinc-400
+  border: 1px solid #e6e9ec; 
+  box-shadow: 4px 4px 4px #cdd3d9;
   cursor: pointer;
   
   & li {
-    background-color: red;
-
     & a {
         padding: 8px 12px;
         border-radius: 4px;
