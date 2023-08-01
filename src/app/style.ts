@@ -58,6 +58,7 @@ export const Input = styled.input`
   color: #4a5568;
 `;
 
+
 export const DataInicio = styled.div`
 
 `;
@@ -110,7 +111,7 @@ export const Caption = styled.div`
   text-align: center;
   background-color: #d9dde2; 
   padding: 10px;
-
+  
   & div {
     & span {
       font-weight: 600;
@@ -174,7 +175,7 @@ export const StyledReactPaginate = styled(ReactPaginate)`
 
         &.previous,
         &.next {
-          background-color: red;
+          background-color: #f2f4f5;
         }
 
         &.disabled {

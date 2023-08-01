@@ -1,131 +1,80 @@
 'use client'
 
 import { useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import Header from '@/components/Header';
+import Forms from '@/components/Forms';
+import Table from '@/components/Table';
+import Pagination from '@/components/Pagination';
+import { Main, Container } from './style';
+import { FormatDateTimeAPI } from '@/components/Utils/FormatDateTime';
 import axios from 'axios';
-import { Main, Container, Header, Superior, Centro, DataInicio, DataFim, Label, Input, NomeOperador, ButtomPesquisar, TableContainer, Caption, TableHeader, TableData, TableFooter, StyledReactPaginate } from './style';
 
 export default function Home() {
   const [transferencias, setTransferencias] = useState([]);
   const [saldoTotal, setSaldoTotal] = useState(0);
   const [saldoTotalNoPeriodo, setSaldoTotalNoPeriodo] = useState(0);
-  const [dataInicio, setDataInicio] = useState('');
-  const [dataFim, setDataFim] = useState('');
-  const [nomeOperador, setNomeOperador] = useState('');
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
   const pageCount = Math.ceil(transferencias.length / itemsPerPage);
 
-  const handlePageChange = ({ selected }: { selected: number }) => {
-    setCurrentPage(selected);
+  const handlePageChange = (selected: { selected: number }) => {
+    setCurrentPage(selected.selected);
+  };
+
+  const handleSearch = async (dataInicio: string, dataFim: string, nomeOperador: string) => {
+    try {
+      const params : { [key: string]: any } = {};
+
+      if (dataInicio) {
+        params.dataInicio = FormatDateTimeAPI(dataInicio);
+      }
+
+      if (dataFim) {
+        params.dataFim = FormatDateTimeAPI(dataFim);
+      }
+
+      if (nomeOperador) {
+        params.nomeOperador = nomeOperador;
+      }
+
+      const response = await axios.get('http://localhost:8080/transferencias', {
+        params: params
+      });
+      
+      const data = response.data.transferencias;
+      const total = response.data.saldoTotal;
+      const totalNoPeriodo = response.data.saldoTotalNoPeriodo;
+
+      setTransferencias(data);
+      setSaldoTotal(total);
+      setSaldoTotalNoPeriodo(totalNoPeriodo);
+
+    } catch (error) {
+      console.error('Erro ao buscar as transferências:', error);
+    }
   };
 
   const displayedTransferencias = transferencias.slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage
   );
-
-  const handleSearch = async () => {
-    try {
-      const params : { [key: string]: any } = {};
-
-      if (dataInicio) {
-        params.dataInicio = formatDateTime(dataInicio);
-      }
-
-      if (dataFim) {
-        params.dataFim = formatDateTime(dataFim);
-      }
-
-      if (nomeOperador) {
-        params.nomeOperador = nomeOperador;
-      }
   
-      const response = await axios.get('http://localhost:8080/transferencias', {
-        params: params
-      });
-      const data = response.data.transferencias;
-      const total = response.data.saldoTotal;
-      const totalNoPeriodo = response.data.saldoTotalNoPeriodo;
-      setTransferencias(data);
-      setSaldoTotal(total);
-      setSaldoTotalNoPeriodo(totalNoPeriodo);
-  
-      console.log(response.request);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Erro ao buscar as transferências:', error);
-    }
-  };
-
-  const formatDateTime = (datetime: any) => {
-    const date = new Date(datetime);
-    const formattedDate = date.toISOString().split('T')[0];
-    const formattedTime = date.toTimeString().split(' ')[0];
-    return `${formattedDate}T${formattedTime}`;
-  };
-
   return (
     <Main>
       <Container>
-        <Header><h1>Movimentações Bancárias</h1></Header>
-        <Superior>
-          <DataInicio>
-            <Label>Data de Início:</Label>
-            <Input type="date" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
-          </DataInicio>
-          <DataFim>
-            <Label>Data de Fim:</Label>
-            <Input type="date" value={dataFim} onChange={(e) => setDataFim(e.target.value)} />
-          </DataFim>
-          <NomeOperador>
-            <Label>Nome do Operador Transacionado:</Label>
-            <Input type="text" value={nomeOperador} onChange={(e) => setNomeOperador(e.target.value)} />
-          </NomeOperador>
-        </Superior>
-        <Centro>
-          <ButtomPesquisar onClick={handleSearch}>Pesquisar</ButtomPesquisar>
-        </Centro>
-
-        <TableContainer>
-          <Caption>
-            <div>
-              Saldo Total: <span>{saldoTotal}</span>
-            </div>
-            <div>
-              Saldo no Período: <span>{saldoTotalNoPeriodo}</span>
-            </div>
-          </Caption>
-          <TableHeader>
-            <div>Dados</div>
-            <div>Valencia</div>
-            <div>Tipo</div>
-            <div>Nome do Operador Transacionado</div>
-          </TableHeader>
-          {displayedTransferencias.map((transferencia) => (
-            <TableData key={transferencia.id}>
-              <div>{transferencia.dataTransferencia}</div>
-              <div>{transferencia.valor}</div>
-              <div>{transferencia.tipo}</div>
-              <div>{transferencia.nomeOperadorTransacao}</div>
-            </TableData>
-          ))}
-          <TableFooter>
-            <StyledReactPaginate
-              previousLabel={'<<'}
-              nextLabel={'>>'}
-              breakLabel={'...'}
-              breakClassName={'break-me'}
-              pageCount={pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={handlePageChange}
-              containerClassName={'pagination'}
-              activeClassName={'active'}
-            />
-          </TableFooter>
-        </TableContainer>
+        <Header />
+        <Forms onSearch={handleSearch} />
+        <Table
+          displayedTransferencias={displayedTransferencias}
+          saldoTotal={saldoTotal}
+          saldoTotalNoPeriodo={saldoTotalNoPeriodo}
+        />
+        <Pagination
+          pageCount={pageCount}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </Container>
     </Main>
   );
