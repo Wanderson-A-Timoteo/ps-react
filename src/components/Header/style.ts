@@ -26,13 +26,23 @@ export const HeaderContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    
-
+    span {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #FFA43A;
+    }
   }
 
   @media (max-width: 550px) {
-
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #FFA43A;
+    }
   }
 `;
 

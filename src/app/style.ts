@@ -15,8 +15,3 @@ export const Container = styled.div`
   margin: auto;
   background-color: #F9F9F9;
 `;
-
-export const Footer = styled.div`
-  background-color: #6B7280;
-  height: 50px;
-`;
