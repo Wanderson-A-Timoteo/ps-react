@@ -1,7 +1,7 @@
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
-export const TableFooter = styled.div`
+export const Paginations = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactPaginate from 'react-paginate';
-import { TableFooter, StyledReactPaginate } from './style';
+import { Paginations, StyledReactPaginate } from './style';
 
 interface PaginationProps {
   pageCount: number;
@@ -10,7 +9,7 @@ interface PaginationProps {
 
 export default function Pagination({ pageCount, currentPage, onPageChange }: PaginationProps) {
   return (
-    <TableFooter>
+    <Paginations>
       <StyledReactPaginate
         previousLabel={'<<'}
         nextLabel={'>>'}
@@ -23,6 +22,6 @@ export default function Pagination({ pageCount, currentPage, onPageChange }: Pag
         containerClassName={'pagination'}
         activeClassName={'active'}
       />
-    </TableFooter>
+    </Paginations>
   );
 }

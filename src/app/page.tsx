@@ -8,6 +8,7 @@ import Pagination from '@/components/Pagination';
 import { Main, Container } from './style';
 import { FormatDateTimeAPI } from '@/components/Utils/FormatDateTime';
 import axios from 'axios';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const [transferencias, setTransferencias] = useState([]);
@@ -62,8 +63,8 @@ export default function Home() {
   
   return (
     <Main>
+      <Header />
       <Container>
-        <Header />
         <Forms onSearch={handleSearch} />
         <Table
           displayedTransferencias={displayedTransferencias}
@@ -76,6 +77,7 @@ export default function Home() {
           onPageChange={handlePageChange}
         />
       </Container>
+      <Footer />
     </Main>
   );
 }

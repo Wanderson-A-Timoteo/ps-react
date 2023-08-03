@@ -1,10 +1,38 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.header`
-  display: flex;
+export const Headers = styled.header`
+  width: 100vw;
+  display: grid;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  padding: 10px;
-  color: #4a5568;
+  background-color: #6B7280;
 `;
+
+export const HeaderContainer = styled.div`
+  width: 90vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  margin: 10px;
+
+  h1 {
+    color: #FFA43A;
+  }
+
+  span {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #FFA43A;
+  }
+
+  @media (max-width: 768px) {
+    
+
+  }
+
+  @media (max-width: 550px) {
+
+
+  }
+`;
+
