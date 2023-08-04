@@ -13,5 +13,5 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-  background-color: #F9F9F9;
+  background-color: rgba(248, 244, 238, 0.608);
 `;

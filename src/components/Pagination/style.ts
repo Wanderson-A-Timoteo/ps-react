@@ -6,7 +6,10 @@ export const Paginations = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color:  #f2f4f5; 
+  background-color:  #e6e9ec; 
+  margin: 0px 10px;
+  box-shadow: 3px 4px 4px #cdd3d9;
+  border-radius: 0px 0px 3px 3px;
 `;
 
 export const StyledReactPaginate = styled(ReactPaginate)`
@@ -18,9 +21,9 @@ export const StyledReactPaginate = styled(ReactPaginate)`
   border-radius: 3px;
   list-style: none;
   border-radius: 5px;
-  border: 1px solid #e6e9ec; 
   box-shadow: 4px 4px 4px #cdd3d9;
   cursor: pointer;
+  background-color: #f2f4f5;
   
   & li {
     & a {
@@ -29,25 +32,10 @@ export const StyledReactPaginate = styled(ReactPaginate)`
         text-decoration: none;
         color: #4a5568;
         background-color: #f2f4f5;
-        transition: background-color 0.2s, color 0.2s;
-
-        &.previous,
-        &.next {
-          background-color: #f2f4f5;
-        }
-
-        &.disabled {
-          cursor: not-allowed;
-          opacity: 0.5;
-        }
-
-        &.selected {
-          background-color: #4a5568;
-          color: #c0c6cd;
-        }
+        transition: 0.3s;
 
         &:hover {
-          background-color: #e6e9ec;
+          background-color: rgba(252, 174, 85, 0.859);
         }
       }
   }
