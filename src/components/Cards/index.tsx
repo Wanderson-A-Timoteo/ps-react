@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { FormatDateTimeView } from "../Utils/FormatDateTime";
 import { RemoveAccents } from "../Utils/RemoveAccents";
-import { MobileGrid, PaginationWrapper, Section, TotalBalance, Transaction } from "./style";
+import { MobileGrid, Section, TotalBalance, Transaction } from "./style";
+import Pagination from "../Pagination";
 
 interface CardsProps {
   filteredCurrentRowsMobile: Transferencia[];
   saldoTotal: number;
   saldoTotalNoPeriodo: number;
-  filteredCurrentPageMobile: number;
-  filteredTotalPagesMobile: number;
-  handleFilteredPageChangeMobile: (page: number) => void;
-  filteredPagesToShowMobile: number[];
+  currentPage: number;
+  filteredTotalPages: number;
+  onPageChange: (page: number) => void;
 }
 
 interface Transferencia {
@@ -21,7 +20,13 @@ interface Transferencia {
   nomeOperadorTransacao: string;
 }
 
-export default function Cards ({ filteredCurrentRowsMobile, saldoTotal, saldoTotalNoPeriodo, filteredCurrentPageMobile, filteredTotalPagesMobile, handleFilteredPageChangeMobile, filteredPagesToShowMobile } : CardsProps) {
+export default function Cards ({ filteredCurrentRowsMobile, saldoTotal, saldoTotalNoPeriodo, currentPage, 
+  filteredTotalPages, onPageChange }: CardsProps) {
+
+  const handlePageChange = (selected: { selected: number }) => {
+    onPageChange(selected.selected);
+  };
+
   return (
     <Section>
       <TotalBalance>
@@ -54,31 +59,12 @@ export default function Cards ({ filteredCurrentRowsMobile, saldoTotal, saldoTot
             <div className="operator">{transferencia.nomeOperadorTransacao}</div>
           </Transaction>
         ))}
+        <Pagination
+          pageCount={filteredTotalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </MobileGrid>
-      {/* Paginação para dispositivos móveis */}
-      <PaginationWrapper>
-        {filteredCurrentPageMobile > 1 && (
-          <button onClick={() => handleFilteredPageChangeMobile(filteredCurrentPageMobile - 1)}>
-            {"<<"}
-          </button>
-        )}
-
-        {filteredPagesToShowMobile.map((page) => (
-          <button
-            key={page}
-            className={filteredCurrentPageMobile === page ? "active" : ""}
-            onClick={() => handleFilteredPageChangeMobile(page)}
-          >
-            {page}
-          </button>
-        ))}
-
-        {filteredCurrentPageMobile < filteredTotalPagesMobile && (
-          <button onClick={() => handleFilteredPageChangeMobile(filteredCurrentPageMobile + 1)}>
-            {">>"}
-          </button>
-        )}
-      </PaginationWrapper>
     </Section>
   )
 }

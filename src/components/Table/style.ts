@@ -6,6 +6,10 @@ export const TableContainer = styled.div`
   margin: 0px 10px;
   border-radius: 5px;
   box-shadow: 3px 4px 4px #cdd3d9;
+
+  @media (max-width: 770px) {
+    display: none;
+  }
 `;
 
 export const Caption = styled.div`
@@ -46,5 +50,23 @@ export const TableData = styled.div`
 
   &:nth-child(even) {
     background-color: #f9fafb; 
+  }
+
+  .transaction-type {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem; 
+    font-weight: 500; 
+    text-transform: uppercase;
+    border-radius: 0.25rem; 
+
+    &.green-bg {
+      color: #065f46; 
+      background-color: #c6f6d5;
+    }
+
+    &.yellow-bg {
+      color: #c50101;
+      background-color: rgba(255, 109, 109, 0.488);
+    }
   }
 `;

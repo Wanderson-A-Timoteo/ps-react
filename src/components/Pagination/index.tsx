@@ -16,11 +16,13 @@ export default function Pagination({ pageCount, currentPage, onPageChange }: Pag
         breakLabel={'...'}
         breakClassName={'break-me'}
         pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={1}
         onPageChange={onPageChange}
         containerClassName={'pagination'}
         activeClassName={'active'}
+        disabledClassName={'disabled'}
+        forcePage={currentPage - 1}
       />
     </Paginations>
   );
