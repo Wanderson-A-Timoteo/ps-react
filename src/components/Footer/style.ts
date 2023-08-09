@@ -8,7 +8,6 @@ export const Footers = styled.footer`
   background-color: #6B7280;
   position: fixed;
   bottom: 0;
-  left: 0;
 `;
 
 export const FooterContainer = styled.div`

@@ -14,5 +14,11 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
+  padding-bottom: 60px;
   background-color: rgba(248, 244, 238, 0.608);
+
+  @media (max-height: 770px) {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
 `;
