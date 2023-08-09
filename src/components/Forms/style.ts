@@ -22,7 +22,6 @@ export const Superior = styled.div`
 `;
 
 export const Label = styled.div`
-  font-weight: 600;
   padding: 5px 0px;
 `;
 
@@ -86,6 +85,7 @@ export const ButtomPesquisar = styled.button`
   padding: 10px;
   cursor: pointer;
   color:  #4a5568;
+  font-weight: 600;
   margin-right: 10px;
   background-color: #FFA43A;
   border: 1px solid #E8742A;

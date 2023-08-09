@@ -7,7 +7,6 @@ export const Section = styled.section`
     display: block;
     padding-bottom: 1.25rem;
   }
-  
 `;
 
 export const TotalBalance = styled.div`
@@ -34,6 +33,11 @@ export const MobileGrid = styled.div`
   margin-left: 0.75rem;
   margin-right: 0.75rem;
   gap: 0.5rem;
+
+  @media (max-width: 770px) {
+    margin-bottom: 50px;
+    overflow: auto;
+  }
 
   @media (min-width: 640px) {
     grid-template-columns: repeat(2, 1fr);

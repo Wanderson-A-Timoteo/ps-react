@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const Footers = styled.header`
+export const Footers = styled.footer`
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #6B7280;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 `;
 
 export const FooterContainer = styled.div`
